@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "id": "gnome-adwaita",
+  "name": "GNOME Adwaita",
+  "tokens": {
+    "color": {
+      "bar.bg": "#000000",
+      "bar.fg": "#ffffff",
+      "accent": "#3584e4",
+      "surface": "#242424",
+      "surface.fg": "#ffffff",
+      "overview.scrim": "#1d1d20e6",
+      "dock.bg": "#3a3a3fd9",
+      "popover.bg": "#2a2a2eee",
+      "popover.fg": "#ffffff",
+      "tile.bg": "#ffffff14",
+      "tile.selected": "#3584e4"
+    },
+    "font": {
+      "family": "Cantarell",
+      "size.bar": 14,
+      "weight.bar": 700,
+      "size.body": 14
+    },
+    "radius": {
+      "tile": 12,
+      "popover": 18,
+      "dock": 22,
+      "button": 999
+    },
+    "blur": {
+      "dock": 30,
+      "popover": 24
+    },
+    "motion": {
+      "overview.ms": 250,
+      "curve": "easeOutCubic"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": [
+        "activities"
+      ],
+      "center": [
+        "clock"
+      ],
+      "right": [
+        "appName",
+        "indicators"
+      ],
+      "clockFormat": "EEE MMM d  HH:mm"
+    },
+    "dock": {
+      "mode": "overviewOnly",
+      "position": "bottom",
+      "iconSize": 56
+    }
+  },
+  "system": {
+    "darkMode": "light",
+    "accent": "blue",
+    "wallpaper": {
+      "light": "wallpapers/day.png",
+      "dark": "../gnome-dark/wallpapers/night.png"
+    },
+    "nativeDock": "hidden"
+  }
+}

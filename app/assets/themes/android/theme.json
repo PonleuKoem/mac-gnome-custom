@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "id": "android",
+  "name": "Android · Material You",
+  "tokens": {
+    "color": {
+      "bar.bg": "#1a1c16",
+      "bar.fg": "#e2e3d8",
+      "accent": "#b1d18a",
+      "surface": "#1a1c16",
+      "surface.fg": "#e2e3d8",
+      "overview.scrim": "#12140ef0",
+      "dock.bg": "#2a2e24d9",
+      "popover.bg": "#1f231bf7",
+      "popover.fg": "#e2e3d8",
+      "tile.bg": "#b1d18a24",
+      "tile.selected": "#b1d18a",
+      "icon.plate": "#dfe8cf"
+    },
+    "font": {
+      "family": "Roboto",
+      "size.bar": 14,
+      "weight.bar": 500,
+      "size.body": 14
+    },
+    "radius": {
+      "tile": 24,
+      "popover": 28,
+      "dock": 32,
+      "button": 999
+    },
+    "blur": {
+      "dock": 24,
+      "popover": 0
+    },
+    "motion": {
+      "overview.ms": 300,
+      "curve": "fastOutSlowIn"
+    },
+    "icon": {
+      "shape": "circle"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["clock", "appName"],
+      "center": [],
+      "right": ["indicators"],
+      "clockFormat": "HH:mm"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "bottom",
+      "style": "floating",
+      "iconSize": 52,
+      "showRunningDots": false,
+      "showAppGridButton": true,
+      "pinned": ["com.apple.MobileSMS", "com.apple.Safari", "com.apple.Photos", "com.apple.mail", "com.apple.Music"]
+    },
+    "launcher": {
+      "iconSize": 64,
+      "labels": true
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "accent": "green",
+    "wallpaper": "wallpapers/hills.png",
+    "nativeDock": "hidden"
+  }
+}

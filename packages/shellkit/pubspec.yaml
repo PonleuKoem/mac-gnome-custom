@@ -1,0 +1,22 @@
+name: shellkit
+description: Native macOS services (panels, hotkeys, apps, appearance, safety) for mac-gnome-custom.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: '>=3.35.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  pigeon: ^26.3.4
+
+flutter:
+  plugin:
+    platforms:
+      macos:
+        pluginClass: ShellKitPlugin

@@ -1,0 +1,21 @@
+name: Theme request or submission
+description: Propose a built-in theme, or share one you made
+labels: [theme]
+body:
+  - type: textarea
+    id: look
+    attributes:
+      label: The look
+      description: What it's inspired by, with screenshots or references.
+    validations:
+      required: true
+  - type: textarea
+    id: theme
+    attributes:
+      label: theme.json (if you have one)
+      render: json
+  - type: input
+    id: license
+    attributes:
+      label: Wallpaper and icon licensing
+      placeholder: e.g. my own work (MIT), CC0 from …

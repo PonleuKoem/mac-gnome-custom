@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ponleu/mac-gnome-custom/docs/theme.schema.json",
+  "title": "mac-gnome-custom theme (schema 1)",
+  "description": "A theme only states what it changes; everything else comes from the defaults or the theme it extends (ADR-0009). Invalid values fall back per token and are listed in the Customizer.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "extends": {
+      "type": "string",
+      "description": "Id of a built-in or user theme to inherit from."
+    },
+    "tokens": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "object",
+          "description": "#rgb, #rrggbb or #rrggbbaa (alpha last).",
+          "propertyNames": {
+            "enum": [
+              "bar.bg",
+              "bar.fg",
+              "accent",
+              "surface",
+              "surface.fg",
+              "overview.scrim",
+              "dock.bg",
+              "popover.bg",
+              "popover.fg",
+              "tile.bg",
+              "tile.selected",
+              "workspace.active",
+              "workspace.inactive",
+              "danger",
+              "icon.plate",
+              "bar.border",
+              "dock.fg"
+            ]
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+          }
+        },
+        "font": {
+          "type": "object",
+          "properties": {
+            "family": {
+              "type": "string",
+              "description": "Any installed font family; falls back to the system font."
+            },
+            "size.bar": {
+              "type": "number",
+              "minimum": 8,
+              "maximum": 32
+            },
+            "weight.bar": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900
+            },
+            "size.body": {
+              "type": "number",
+              "minimum": 8,
+              "maximum": 32
+            },
+            "weight.activities": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900,
+              "description": "Top-bar 'activities' weight (defaults to weight.bar)."
+            },
+            "weight.appName": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900,
+              "description": "Top-bar 'appName' weight (defaults to weight.bar)."
+            },
+            "weight.clock": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900,
+              "description": "Top-bar 'clock' weight (defaults to weight.bar)."
+            },
+            "weight.indicators": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900,
+              "description": "Top-bar 'indicators' weight (defaults to weight.bar)."
+            },
+            "weight.appGrid": {
+              "type": "number",
+              "minimum": 100,
+              "maximum": 900,
+              "description": "Top-bar 'appGrid' weight (defaults to weight.bar)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "radius": {
+          "type": "object",
+          "properties": {
+            "tile": {
+              "type": "number",
+              "minimum": 0
+            },
+            "popover": {
+              "type": "number",
+              "minimum": 0
+            },
+            "dock": {
+              "type": "number",
+              "minimum": 0
+            },
+            "button": {
+              "type": "number",
+              "minimum": 0,
+              "description": "999 = pill"
+            }
+          }
+        },
+        "blur": {
+          "type": "object",
+          "description": "Real desktop blur behind the dock / popovers (NSVisualEffectView). 0 disables.",
+          "properties": {
+            "dock": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "popover": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "bar": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "motion": {
+          "type": "object",
+          "properties": {
+            "overview.ms": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            "curve": {
+              "enum": [
+                "linear",
+                "ease",
+                "easeIn",
+                "easeOut",
+                "easeInOut",
+                "easeOutCubic",
+                "easeInOutCubic",
+                "easeOutQuart",
+                "easeOutBack",
+                "fastOutSlowIn"
+              ]
+            }
+          }
+        },
+        "icon": {
+          "type": "object",
+          "properties": {
+            "shape": {
+              "enum": [
+                "native",
+                "circle",
+                "squircle",
+                "rounded"
+              ],
+              "description": "native = the app's own icon; the others draw a plate in color icon.plate with the icon inset (dock and launcher)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "texture": {
+          "type": "object",
+          "description": "Print-style texture over the launcher backdrop.",
+          "properties": {
+            "scrim": {
+              "enum": [
+                "none",
+                "halftone",
+                "grain"
+              ]
+            },
+            "strength": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Opacity of the texture in surface.fg (default 0.1)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "scale": {
+          "type": "number",
+          "minimum": 0.75,
+          "maximum": 1.5,
+          "default": 1.0,
+          "description": "Interface size: one multiplier for font sizes, corner radii and dock/launcher icon sizes, so the theme keeps its proportions. The top bar text is additionally capped to fit the macOS menu bar."
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "topBar": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "left": {
+              "$ref": "#/$defs/widgets"
+            },
+            "center": {
+              "$ref": "#/$defs/widgets"
+            },
+            "right": {
+              "$ref": "#/$defs/widgets"
+            },
+            "clockFormat": {
+              "type": "string",
+              "description": "Tokens: EEEE EEE MMMM MMM MM M dd d HH H hh h mm ss a"
+            }
+          }
+        },
+        "dock": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "off",
+                "overviewOnly",
+                "always"
+              ]
+            },
+            "position": {
+              "enum": [
+                "bottom",
+                "left",
+                "right"
+              ]
+            },
+            "iconSize": {
+              "type": "number",
+              "minimum": 24,
+              "maximum": 128
+            },
+            "showRunningDots": {
+              "type": "boolean"
+            },
+            "showAppGridButton": {
+              "type": "boolean"
+            },
+            "pinned": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Bundle identifier"
+              }
+            },
+            "style": {
+              "enum": [
+                "floating",
+                "panel"
+              ],
+              "description": "floating = rounded island sized to its icons; panel = spans the whole screen edge (Ubuntu-style)."
+            },
+            "showCustomizerButton": {
+              "type": "boolean",
+              "description": "⚙ tile at the end of the dock that opens the Customizer (default true)."
+            },
+            "reserveSpace": {
+              "type": "boolean",
+              "description": "Keep windows clear of an always-visible dock (default true): the native Dock stays as a hidden spacer so macOS reserves the strip, and the shell's dock is drawn over it."
+            },
+            "magnification": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2,
+              "description": "macOS-style zoom of the icon under the pointer, neighbours easing off (1 = off; default 1.5)."
+            }
+          }
+        },
+        "launcher": {
+          "type": "object",
+          "description": "The Activities launcher's app grid.",
+          "properties": {
+            "iconSize": {
+              "type": "number",
+              "minimum": 48,
+              "maximum": 112
+            },
+            "labels": {
+              "type": "boolean",
+              "description": "App names under the icons."
+            }
+          }
+        }
+      }
+    },
+    "system": {
+      "type": "object",
+      "description": "macOS settings. Applied only after onboarding, journaled and reversible (ADR-0010).",
+      "properties": {
+        "darkMode": {
+          "enum": [
+            "dark",
+            "light",
+            "untouched",
+            true,
+            false,
+            null
+          ]
+        },
+        "accent": {
+          "enum": [
+            "graphite",
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple",
+            "pink",
+            "multicolor",
+            null
+          ]
+        },
+        "wallpaper": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "description": "Path relative to the theme folder, or absolute."
+            },
+            {
+              "type": "object",
+              "properties": {
+                "light": {
+                  "type": "string"
+                },
+                "dark": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "nativeDock": {
+          "enum": [
+            "hidden",
+            "visible"
+          ]
+        }
+      }
+    },
+    "icons": {
+      "type": "object",
+      "properties": {
+        "pack": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Folder (relative to the theme) of <bundleId>.png overrides."
+        }
+      }
+    },
+    "keybindings": {
+      "type": "object",
+      "description": "action → chord, modifiers+key like 'alt+space' or 'ctrl+alt+space' (public hotkeys only, ADR-0012). Empty string unbinds.",
+      "propertyNames": {
+        "enum": [
+          "overview",
+          "appGrid"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "widgets": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "activities",
+          "appName",
+          "clock",
+          "indicators",
+          "appGrid",
+          "spacer"
+        ]
+      }
+    }
+  }
+}

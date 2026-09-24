@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.35.3
+          channel: stable
+          cache: true
+
+      - name: Swift core tests
+        run: make test-swift
+
+      - name: Pigeon bridge is up to date
+        run: |
+          (cd packages/shellkit && flutter pub get)
+          make gen
+          git diff --exit-code -- packages/shellkit/lib/src/messages.g.dart packages/shellkit/macos/Classes/Messages.g.swift
+
+      - name: Dart format
+        run: |
+          (cd app && dart format --output=none --set-exit-if-changed lib test)
+          (cd packages/shellkit && dart format --output=none --set-exit-if-changed pigeons)
+
+      - name: Dart analyze and tests
+        run: |
+          (cd app && flutter pub get)
+          make analyze
+          make test-dart
+
+      - name: Build app
+        run: make build

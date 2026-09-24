@@ -1,0 +1,49 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. For security problems, please use private reporting instead (see SECURITY.md).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Choose the Ubuntu theme
+        2. Hover Safari in the dock
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: theme
+    attributes:
+      label: Theme
+      placeholder: e.g. GNOME Adwaita, or a custom theme extending it
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac
+      placeholder: e.g. macOS 26.0, MacBook Pro M3 with notch, external display
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+      placeholder: e.g. 0.1.0 or a1b2c3d
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: |
+        Screenshots help a lot. Logs: `log show --last 5m --predicate 'subsystem BEGINSWITH "dev.ponleu"' --info`
+      render: text

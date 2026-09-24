@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "gnome-dark",
+  "name": "GNOME Dark",
+  "extends": "gnome-adwaita",
+  "tokens": {
+    "color": {
+      "overview.scrim": "#0b0b0ff0",
+      "dock.bg": "#1e1e22e6",
+      "popover.bg": "#1e1e22f2",
+      "tile.bg": "#ffffff10",
+      "accent": "#78aeed",
+      "tile.selected": "#78aeed"
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "wallpaper": { "light": "wallpapers/night.png", "dark": "wallpapers/night.png" }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "id": "ios",
+  "name": "iOS",
+  "tokens": {
+    "color": {
+      "bar.bg": "#000000",
+      "bar.fg": "#ffffff",
+      "accent": "#0a84ff",
+      "surface": "#1c1c1e",
+      "surface.fg": "#ffffff",
+      "overview.scrim": "#1c1c1eb3",
+      "dock.bg": "#ffffff38",
+      "popover.bg": "#1c1c1ee0",
+      "popover.fg": "#ffffff",
+      "tile.bg": "#ffffff1f",
+      "tile.selected": "#0a84ff",
+      "icon.plate": "#ffffff"
+    },
+    "font": {
+      "family": ".AppleSystemUIFont",
+      "size.bar": 14,
+      "weight.bar": 600,
+      "size.body": 14
+    },
+    "radius": {
+      "tile": 22,
+      "popover": 28,
+      "dock": 34,
+      "button": 999
+    },
+    "blur": {
+      "dock": 50,
+      "popover": 40
+    },
+    "motion": {
+      "overview.ms": 340,
+      "curve": "easeOutBack"
+    },
+    "icon": {
+      "shape": "native"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["clock"],
+      "center": [],
+      "right": ["appGrid", "indicators"],
+      "clockFormat": "H:mm"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "bottom",
+      "style": "floating",
+      "iconSize": 60,
+      "showRunningDots": false,
+      "showAppGridButton": false,
+      "pinned": ["com.apple.MobileSMS", "com.apple.Safari", "com.apple.mail", "com.apple.Music"]
+    },
+    "launcher": {
+      "iconSize": 76,
+      "labels": true
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "accent": "blue",
+    "wallpaper": "wallpapers/aurora.png",
+    "nativeDock": "hidden"
+  }
+}

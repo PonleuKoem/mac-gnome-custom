@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "id": "win11",
+  "name": "Windows 11",
+  "tokens": {
+    "color": {
+      "bar.bg": "#f3f3f3",
+      "bar.fg": "#1b1b1b",
+      "accent": "#0067c0",
+      "surface": "#f3f3f3",
+      "surface.fg": "#1b1b1b",
+      "overview.scrim": "#e8eef6e6",
+      "dock.bg": "#f3f3f3cc",
+      "popover.bg": "#f9f9f9f2",
+      "popover.fg": "#1b1b1b",
+      "tile.bg": "#0000000d",
+      "tile.selected": "#0067c0",
+      "workspace.active": "#0067c0",
+      "workspace.inactive": "#1b1b1b55"
+    },
+    "font": {
+      "family": "Segoe UI Variable",
+      "size.bar": 12,
+      "weight.bar": 400,
+      "size.body": 13
+    },
+    "radius": {
+      "tile": 8,
+      "popover": 8,
+      "dock": 8,
+      "button": 4
+    },
+    "blur": {
+      "dock": 40,
+      "popover": 40
+    },
+    "motion": {
+      "overview.ms": 200,
+      "curve": "easeOutQuart"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": false
+    },
+    "dock": {
+      "mode": "always",
+      "position": "bottom",
+      "iconSize": 36,
+      "showRunningDots": true,
+      "showAppGridButton": true
+    }
+  },
+  "system": {
+    "darkMode": "light",
+    "accent": "blue",
+    "wallpaper": "wallpapers/bloom.png",
+    "nativeDock": "hidden"
+  }
+}

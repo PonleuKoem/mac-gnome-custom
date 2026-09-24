@@ -1,0 +1,41 @@
+name: mac_gnome_custom
+description: A themable desktop shell for macOS — top bar, dock and launcher in the look you choose.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shellkit:
+    path: ../packages/shellkit
+  archive: ^4.0.0
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/themes/gnome-adwaita/
+    - assets/themes/gnome-adwaita/wallpapers/
+    - assets/themes/gnome-dark/
+    - assets/themes/gnome-dark/wallpapers/
+    - assets/themes/win11/
+    - assets/themes/win11/wallpapers/
+    - assets/themes/classic-mac/
+    - assets/themes/ios/
+    - assets/themes/ios/wallpapers/
+    - assets/themes/android/
+    - assets/themes/android/wallpapers/
+    - assets/themes/ubuntu/
+    - assets/themes/ubuntu/wallpapers/
+    - assets/themes/opus-tidepool/
+    - assets/themes/opus-tidepool/wallpapers/
+    - assets/themes/fable-overprint/
+    - assets/themes/fable-overprint/wallpapers/

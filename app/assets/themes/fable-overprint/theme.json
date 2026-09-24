@@ -1,0 +1,94 @@
+{
+  "$schema": "../../../../docs/theme.schema.json",
+  "schema": 1,
+  "id": "fable-overprint",
+  "name": "Overprint",
+  "_concept": "A two-ink risograph poster — fluorescent pink and federal blue on warm cream stock, plates a touch out of register. The cream top bar and bottom panel are the paper margins; the desktop is the print. Designed by Fable.",
+  "tokens": {
+    "color": {
+      "bar.bg": "#f4ecd8",
+      "bar.fg": "#1f2f6b",
+      "bar.border": "#1f2f6b",
+      "dock.fg": "#1f2f6b",
+      "accent": "#e8347c",
+      "surface": "#f4ecd8",
+      "surface.fg": "#1f2f6b",
+      "overview.scrim": "#f4ecd8ea",
+      "dock.bg": "#f4ecd8e6",
+      "popover.bg": "#fbf5e6f5",
+      "popover.fg": "#1f2f6b",
+      "tile.bg": "#1f2f6b12",
+      "tile.selected": "#e8347c",
+      "icon.plate": "#fffaf0",
+      "workspace.active": "#e8347c",
+      "workspace.inactive": "#1f2f6b55",
+      "danger": "#d9382b"
+    },
+    "font": {
+      "family": "Futura",
+      "size.bar": 13,
+      "weight.bar": 500,
+      "weight.activities": 700,
+      "weight.clock": 500,
+      "weight.appName": 400,
+      "weight.indicators": 500,
+      "size.body": 14
+    },
+    "texture": {
+      "scrim": "halftone",
+      "strength": 0.12
+    },
+    "radius": {
+      "tile": 6,
+      "popover": 6,
+      "dock": 0,
+      "button": 4
+    },
+    "blur": {
+      "dock": 18,
+      "popover": 28
+    },
+    "motion": {
+      "overview.ms": 240,
+      "curve": "easeOutBack"
+    },
+    "icon": {
+      "shape": "squircle"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["activities", "appName"],
+      "center": ["clock"],
+      "right": ["indicators"],
+      "clockFormat": "EEE d MMM  ·  h:mm a"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "bottom",
+      "style": "panel",
+      "iconSize": 44,
+      "showRunningDots": true,
+      "showAppGridButton": true,
+      "pinned": [
+        "com.apple.finder",
+        "com.apple.Safari",
+        "com.apple.mail",
+        "com.apple.Notes",
+        "com.apple.Music",
+        "com.apple.Terminal"
+      ]
+    },
+    "launcher": {
+      "iconSize": 80,
+      "labels": true
+    }
+  },
+  "system": {
+    "darkMode": "light",
+    "accent": "pink",
+    "wallpaper": "wallpapers/overprint.png",
+    "nativeDock": "hidden"
+  }
+}

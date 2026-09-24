@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "id": "ubuntu",
+  "name": "Ubuntu",
+  "tokens": {
+    "color": {
+      "bar.bg": "#000000",
+      "bar.fg": "#ffffff",
+      "accent": "#e95420",
+      "surface": "#2c2c2c",
+      "surface.fg": "#ffffff",
+      "overview.scrim": "#1d1d1de6",
+      "dock.bg": "#1d1d1de0",
+      "popover.bg": "#303030f7",
+      "popover.fg": "#ffffff",
+      "tile.bg": "#ffffff14",
+      "tile.selected": "#e95420"
+    },
+    "font": {
+      "family": "Ubuntu",
+      "size.bar": 14,
+      "weight.bar": 500,
+      "size.body": 14
+    },
+    "radius": {
+      "tile": 12,
+      "popover": 14,
+      "dock": 0,
+      "button": 999
+    },
+    "blur": {
+      "dock": 20,
+      "popover": 0
+    },
+    "motion": {
+      "overview.ms": 250,
+      "curve": "easeOutCubic"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["activities"],
+      "center": ["clock"],
+      "right": ["appName", "indicators"],
+      "clockFormat": "MMM d  HH:mm"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "left",
+      "style": "panel",
+      "iconSize": 44,
+      "showRunningDots": true,
+      "showAppGridButton": true,
+      "pinned": ["com.apple.Safari", "com.apple.mail", "com.apple.finder", "com.apple.TextEdit", "com.apple.Terminal"]
+    },
+    "launcher": {
+      "iconSize": 72,
+      "labels": true
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "accent": "orange",
+    "wallpaper": "wallpapers/aubergine.png",
+    "nativeDock": "hidden"
+  }
+}

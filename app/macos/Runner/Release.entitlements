@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Not sandboxed: the shell controls other apps' windows and writes the
+	     Dock's preferences (ADR-0011). -->
+	<key>com.apple.security.app-sandbox</key>
+	<false/>
+	<!-- Dark mode + power actions go through Apple Events. -->
+	<key>com.apple.security.automation.apple-events</key>
+	<true/>
+</dict>
+</plist>

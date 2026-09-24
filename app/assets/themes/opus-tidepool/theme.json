@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "id": "opus-tidepool",
+  "name": "Tidepool",
+  "_concept": "A bioluminescent night tide. The desktop is dark water; light only appears where something moves — the surf ribbons in the wallpaper, the glowing accent, the icons resting like pebbles on pale sea-glass. The dock floats on the right like a line of buoys, and the launcher opens with a slow swell. Designed by Opus 5.5.",
+  "tokens": {
+    "color": {
+      "bar.bg": "#020814",
+      "bar.fg": "#bfeee6",
+      "accent": "#5af0dc",
+      "surface": "#04121e",
+      "surface.fg": "#dff7f2",
+      "overview.scrim": "#020a14e0",
+      "dock.bg": "#0a2233b8",
+      "popover.bg": "#061a28f2",
+      "popover.fg": "#dff7f2",
+      "tile.bg": "#5af0dc1a",
+      "tile.selected": "#5af0dc",
+      "icon.plate": "#d8f3ee",
+      "danger": "#ff8070"
+    },
+    "font": {
+      "family": "Avenir Next",
+      "size.bar": 13,
+      "weight.bar": 500,
+      "size.body": 14
+    },
+    "radius": {
+      "tile": 999,
+      "popover": 24,
+      "dock": 40,
+      "button": 999
+    },
+    "blur": {
+      "dock": 36,
+      "popover": 30
+    },
+    "motion": {
+      "overview.ms": 480,
+      "curve": "easeOutBack"
+    },
+    "icon": {
+      "shape": "circle"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["activities"],
+      "center": ["clock"],
+      "right": ["indicators"],
+      "clockFormat": "EEEE  ·  HH:mm"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "right",
+      "style": "floating",
+      "iconSize": 46,
+      "showRunningDots": true,
+      "showAppGridButton": true,
+      "pinned": ["com.apple.finder", "com.apple.Safari", "com.apple.Notes", "com.apple.Music", "com.apple.Terminal"]
+    },
+    "launcher": {
+      "iconSize": 88,
+      "labels": false
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "accent": "green",
+    "wallpaper": "wallpapers/tidepool.png",
+    "nativeDock": "hidden"
+  }
+}

@@ -1,0 +1,21 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+# SwiftPM
+packages/shellkit/macos/.build/
+packages/shellkit/macos/.swiftpm/
+# macOS / Xcode
+.DS_Store
+xcuserdata/
+DerivedData/
+app/macos/Pods/
+# Golden test failure diffs
+**/test/failures/
+# Local scratch
+app/test/_shots/
+*.xcuserstate

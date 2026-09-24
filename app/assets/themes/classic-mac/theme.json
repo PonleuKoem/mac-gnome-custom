@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "classic-mac",
+  "name": "Classic Mac",
+  "tokens": {
+    "color": {
+      "accent": "#007aff",
+      "overview.scrim": "#000000b3",
+      "popover.bg": "#2c2c2ef2",
+      "tile.selected": "#007aff"
+    },
+    "font": {
+      "family": ".AppleSystemUIFont",
+      "size.bar": 13,
+      "weight.bar": 500
+    },
+    "radius": {
+      "tile": 10,
+      "popover": 12,
+      "dock": 16,
+      "button": 6
+    },
+    "blur": {
+      "dock": 0,
+      "popover": 30
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": false
+    },
+    "dock": {
+      "mode": "off"
+    }
+  },
+  "system": {
+    "darkMode": "untouched",
+    "accent": null,
+    "wallpaper": null,
+    "nativeDock": "visible"
+  }
+}
