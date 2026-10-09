@@ -55,6 +55,7 @@ It is an **overlay, not a modification**: it never patches macOS, never needs SI
 | Android | Material You colours, circular icons |
 | Tidepool | Original: a bioluminescent night tide, dock on the right |
 | Overprint | Original: a two-ink risograph poster, cream panel dock |
+| Dracula | The Dracula palette: purple accent, moonlit wallpaper with bats, centred dock |
 
 Theme names describe the look they are inspired by. This project is not affiliated with or endorsed by Apple, the GNOME Foundation, Canonical, Microsoft or Google.
 

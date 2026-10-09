@@ -157,6 +157,94 @@ def tidepool(deep, mid, ribbons, sparkle):
     return pixel
 
 
+def _bat(lx, ly):
+    """Signed coverage of a bat silhouette in its own unit space (body at 0,0, wingtips at x = ±1)."""
+    ax = abs(lx)
+    # Body and head.
+    if (lx / 0.12) ** 2 + ((ly - 0.0) / 0.19) ** 2 < 1.0:
+        return True
+    if lx * lx + (ly + 0.24) ** 2 < 0.11 ** 2:
+        return True
+    # Ears: small triangles on the head.
+    if -0.44 < ly < -0.26 and 0.03 < ax < 0.12 and (ax - 0.03) < (ly + 0.44) * 0.5:
+        return True
+    # Wings: a raised leading edge, a scalloped trailing edge between the finger bones.
+    if 0.08 < ax < 1.0:
+        top = -0.06 - 0.26 * ax - 0.16 * math.sin(math.pi * ax)
+        bottom = 0.20 - 0.52 * ax - 0.42 * abs(math.sin(ax * 3.0 * math.pi)) * ax * (1.0 - ax) * 2.2
+        return top < ly < bottom
+    return False
+
+
+def dracula(bg_top, bg_bottom, moon, crater, rings, bat_col, eye, dots_grey, dots_ink, bats):
+    """Dracula: a pale moon with halo rings, bats, and a pixel-dot field in the Dracula palette."""
+    mx, my, mr = moon[0] * W, moon[1] * H, moon[2] * H
+    moon_lit, moon_shade = moon[3], moon[4]
+    outer = max(r * mr + math.hypot(dx * W, dy * H) for (dx, dy, r, _) in rings)
+    craters = [(mx + ox * mr, my + oy * mr, cr * mr) for (ox, oy, cr) in crater]
+    bat_boxes = []
+    for (bx, by, size, ang) in bats:
+        s = size * H
+        bat_boxes.append((bx * W, by * H, s, math.cos(ang), math.sin(ang)))
+    cell, dot = 27, 8
+
+    def pixel(u, v):
+        px, py = u * W, v * H
+        c = mix(bg_top, bg_bottom, smooth(v))
+        # Blocky haze along the top edge, like a low-res mosaic of cloud.
+        bx, by = int(px) // 48, int(py) // 48
+        haze = (hash01(bx + 101, by + 7) - 0.5) * 14 * (1.0 - smooth(v * 3.2))
+        haze += 26 * math.exp(-((u - 0.18) ** 2 * 5 + (v - 0.05) ** 2 * 30)) * (1.0 - smooth(v * 3.2))
+        c = tuple(ch + haze for ch in c)
+        # Halo rings, outermost first, each a little off-centre.
+        for (dx, dy, r, col) in rings:
+            d = math.hypot(px - (mx + dx * W), py - (my + dy * H))
+            c = mix(c, col, clamp_edge(r * mr - d))
+        # The moon: lit towards the upper left, with soft craters.
+        dm = math.hypot(px - mx, py - my)
+        if dm < mr + 1:
+            shade = smooth(((px - mx) * 0.6 + (py - my) * 0.8) / mr * 0.5 + 0.5)
+            mc = mix(moon_lit, moon_shade, shade)
+            for (cx, cy, cr) in craters:
+                mc = mix(mc, mix(mc, (0, 0, 0), 0.1), clamp_edge(cr - math.hypot(px - cx, py - cy)) * 0.9)
+            c = mix(c, mc, clamp_edge(mr - dm))
+        # Pixel dots: only outside the halo, thinning as they approach it.
+        gx, gy = int(px) // cell, int(py) // cell
+        fx, fy = px - gx * cell, py - gy * cell
+        if fx < dot and fy < dot:
+            dc = math.hypot((gx + 0.3) * cell - mx, (gy + 0.3) * cell - my)
+            reach = smooth((dc - outer) / 260.0)
+            h = hash01(gx, gy)
+            if h < 0.78 * reach:
+                k = hash01(gy + 31, gx + 17)
+                if k > 0.8:
+                    col = dots_ink[int(hash01(gx * 3 + 5, gy * 5 + 3) * len(dots_ink))]
+                    alpha = 0.85
+                else:
+                    col = dots_grey
+                    alpha = 0.25 + 0.55 * hash01(gx + 9, gy + 13)
+                c = mix(c, col, alpha * min(1.0, reach * 1.4))
+        # Bats in front of everything.
+        for (bx0, by0, s, ca, sa) in bat_boxes:
+            if abs(px - bx0) > s * 1.05 or abs(py - by0) > s * 1.05:
+                continue
+            lx = ((px - bx0) * ca + (py - by0) * sa) / s
+            ly = ((py - by0) * ca - (px - bx0) * sa) / s
+            if _bat(lx, ly):
+                c = bat_col
+                for ex in (-0.045, 0.045):
+                    if (lx - ex) ** 2 + (ly + 0.25) ** 2 < 0.028 ** 2:
+                        c = eye
+        d = dither(int(px), int(py))
+        return tuple(max(0, min(255, ch + d)) for ch in c)
+    return pixel
+
+
+def clamp_edge(inside):
+    """Anti-aliased coverage from a signed distance in pixels (positive = inside)."""
+    return max(0.0, min(1.0, inside + 0.5))
+
+
 JOBS = {
     "gnome-adwaita": lambda: png(os.path.join(ROOT, "gnome-adwaita", "wallpapers", "day.png"),
                                  waves((94, 150, 222), (178, 206, 245), (53, 132, 228), (26, 95, 180))),
@@ -181,6 +269,19 @@ JOBS = {
                                      (0.76, 0.028, 6.4, 4.1, 0.012, (150, 120, 255), 0.7),
                                      (0.86, 0.022, 4.8, 1.3, 0.016, (255, 128, 112), 0.55),
                                  ], (235, 255, 250))),
+    "dracula": lambda: png(os.path.join(ROOT, "dracula", "wallpapers", "moon.png"),
+                           dracula((52, 51, 68), (36, 36, 50),
+                                   (0.64, 0.53, 0.19, (196, 195, 222), (150, 148, 182)),
+                                   [(-0.30, -0.62, 0.17), (0.45, -0.30, 0.12), (-0.55, 0.28, 0.20),
+                                    (0.30, 0.62, 0.10), (0.62, 0.30, 0.07)],
+                                   [(-0.045, 0.015, 2.2, (46, 45, 62)), (-0.03, 0.01, 1.85, (56, 55, 76)),
+                                    (-0.015, 0.0, 1.52, (72, 71, 96)), (-0.004, 0.0, 1.22, (96, 95, 126))],
+                                   (40, 39, 54), (189, 147, 249),
+                                   (150, 148, 176),
+                                   [(255, 121, 198), (80, 250, 123), (139, 233, 253), (241, 250, 140),
+                                    (255, 184, 108), (189, 147, 249), (255, 85, 85)],
+                                   [(0.46, 0.41, 0.095, -0.2), (0.79, 0.70, 0.08, 0.25), (0.72, 0.84, 0.045, -0.3),
+                                    (0.44, 0.70, 0.03, 0.2)])),
 }
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ const builtInThemeIds = [
   'android',
   'opus-tidepool',
   'fable-overprint',
+  'dracula',
 ];
 
 class ThemeEntry {

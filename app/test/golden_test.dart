@@ -166,8 +166,8 @@ void main() {
   }
 
   // Presets added later: Ubuntu, iOS, Android, and the two "imagination"
-  // themes (Tidepool, Overprint).
-  for (final themeId in ['ubuntu', 'ios', 'android', 'opus-tidepool', 'fable-overprint']) {
+  // themes (Tidepool, Overprint), and Dracula.
+  for (final themeId in ['ubuntu', 'ios', 'android', 'opus-tidepool', 'fable-overprint', 'dracula']) {
     testWidgets('$themeId activities', (tester) async {
       final (ctrl, themes) = await setup(tester, themeId);
       ctrl.ui.openOverview();

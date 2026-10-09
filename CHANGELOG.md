@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Dracula theme: the Dracula colour palette with a purple accent, a centred dock of rounded tiles, and an original moon-and-bats wallpaper (`tools/gen_wallpapers.py dracula`).
+
 ## [0.1.0] - 2026-09-25
 
 First public release.

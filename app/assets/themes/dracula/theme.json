@@ -1,0 +1,80 @@
+{
+  "$schema": "../../../../docs/theme.schema.json",
+  "schema": 1,
+  "id": "dracula",
+  "name": "Dracula",
+  "_concept": "The Dracula colour scheme as a desktop: charcoal-violet surfaces, a purple accent and hairline, and a centred taskbar-style dock of rounded tiles. The wallpaper is a pale moon in halo rings, with bats and a scatter of pixel dots in the palette's pink, green, cyan and yellow.",
+  "tokens": {
+    "color": {
+      "bar.bg": "#21222c",
+      "bar.fg": "#f8f8f2",
+      "bar.border": "#bd93f966",
+      "accent": "#bd93f9",
+      "surface": "#282a36",
+      "surface.fg": "#f8f8f2",
+      "overview.scrim": "#1e1f29e8",
+      "dock.bg": "#282a36e0",
+      "dock.fg": "#f8f8f2",
+      "popover.bg": "#282a36f5",
+      "popover.fg": "#f8f8f2",
+      "tile.bg": "#44475a80",
+      "tile.selected": "#bd93f9",
+      "icon.plate": "#44475a",
+      "workspace.active": "#bd93f9",
+      "workspace.inactive": "#6272a4",
+      "danger": "#ff5555"
+    },
+    "font": {
+      "family": "Segoe UI Variable",
+      "size.bar": 13,
+      "weight.bar": 500,
+      "weight.clock": 600,
+      "size.body": 13
+    },
+    "radius": {
+      "tile": 10,
+      "popover": 12,
+      "dock": 14,
+      "button": 6
+    },
+    "blur": {
+      "dock": 30,
+      "popover": 30
+    },
+    "motion": {
+      "overview.ms": 240,
+      "curve": "easeOutCubic"
+    },
+    "icon": {
+      "shape": "rounded"
+    }
+  },
+  "layout": {
+    "topBar": {
+      "enabled": true,
+      "left": ["appGrid", "appName"],
+      "center": ["clock"],
+      "right": ["indicators"],
+      "clockFormat": "EEE d MMM  HH:mm"
+    },
+    "dock": {
+      "mode": "always",
+      "position": "bottom",
+      "style": "floating",
+      "iconSize": 40,
+      "magnification": 1.3,
+      "showRunningDots": true,
+      "showAppGridButton": true
+    },
+    "launcher": {
+      "iconSize": 80,
+      "labels": true
+    }
+  },
+  "system": {
+    "darkMode": "dark",
+    "accent": "purple",
+    "wallpaper": "wallpapers/moon.png",
+    "nativeDock": "hidden"
+  }
+}
